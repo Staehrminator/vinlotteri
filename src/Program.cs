@@ -1,3 +1,5 @@
+using Experivin;
+using Experivin.Service;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,4 +13,5 @@ builder.Services
     .AddApplicationInsightsTelemetryWorkerService()
     .ConfigureFunctionsApplicationInsights();
 
+builder.Services.AddScoped<ILotteryService, MockLotteryService>();
 builder.Build().Run();
