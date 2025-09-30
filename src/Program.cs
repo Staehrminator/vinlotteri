@@ -1,4 +1,5 @@
 using Experivin;
+using Experivin.Data;
 using Experivin.Service;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Builder;
@@ -13,5 +14,7 @@ builder.Services
     .AddApplicationInsightsTelemetryWorkerService()
     .ConfigureFunctionsApplicationInsights();
 
+builder.Services.AddScoped<IDataLayer, MockDataLayer>();
 builder.Services.AddScoped<ILotteryService, MockLotteryService>();
+
 builder.Build().Run();
